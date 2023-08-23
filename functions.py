@@ -18,13 +18,15 @@
 
        # return num_messages, len(words) 
 # efficient code for above code
-
-
 from urlextract import URLExtract
 from wordcloud import WordCloud
 import pandas as pd
 from collections import Counter
 import emoji
+import re
+from textblob import TextBlob
+from collections import Counter
+
 
 extractor = URLExtract()
 
@@ -135,6 +137,94 @@ def activity_heatmap(selected_user, df):
 
 
 
+def emoji_helper(selected_user,df):
+    if selected_user != 'overall':
+         df = df[df['user'] == selected_user]
+
+    emojis = []
+    for message in df['message']:
+        emojis.extend([c for c in message if c in emoji.EMOJI_DATA])
+    emoji_df =  pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis))))
+
+    return emoji_df    
+
+
+def classify_emojis(emojis):
+    # Create a dictionary mapping emojis to emotions (customize as needed)
+    emoji_emotion_mapping = {
+        '😡': 'anger',
+        '😐': 'bored',
+        '😄': 'happiness',
+        '😢': 'sadness',
+        '😱': 'fear',
+        '😃': 'excited'
+    }
+
+    classified_emojis = [emoji_emotion_mapping.get(emoji, 'unknown') for emoji in emojis]
+    return classified_emojis
+
+def translate_and_classify_emotion(sentences):
+    emotion_scores = []
+
+    for sentence in sentences:
+        text_blob = TextBlob(sentence)
+        sentiment_score = text_blob.sentiment.polarity
+
+        # Classify emotions based on sentiment scores (customize as needed)
+        if sentiment_score < -0.1:
+            emotion = 'negative'
+        elif sentiment_score > 0.1:
+            emotion = 'positive'
+        else:
+            emotion = 'neutral'
+
+        emotion_scores.append(emotion)
+
+    return emotion_scores
+
+def calculate_final_scores(df):
+    # Calculate emoji scores based on their emotions (customize scoring as needed)
+    emoji_scores = df['emoji_emotion'].apply(lambda x: 2 if x == 'happiness' else -1)
+
+    # Calculate sentence scores based on emotion (customize scoring as needed)
+    sentence_scores = df['sentence_emotion'].apply(lambda x: 1 if x == 'positive' else -1)
+
+    # Calculate total scores
+    df['total_score'] = emoji_scores + sentence_scores
+
+    return df
+
+
+
+def calculate_emoji_category_scores(df):
+    emoji_categories = {
+        "angry": ["😡", "🤬", "😤"],
+        "bored": ["😑", "😒"],
+        "excitement": ["😃", "😄", "😁"],
+        "fear": ["😱", "😨", "😰"],
+        "happy": ["😊", "😄", "🙂"],
+        "sad": ["😞", "😢", "😭"]
+    }
+
+     # Create a dictionary to store scores for each category
+    emoji_category_scores = {category: 0 for category in emoji_categories}
+
+    for _, row in df.iterrows():
+        for category, emojis in emoji_categories.items():
+            for emoji_char in emojis:
+                if emoji_char in row['message']:
+                    emoji_category_scores[category] += 1
+
+    return emoji_category_scores
+
+
+
+
+
 
     
-    
+
+
+  
+  
+
