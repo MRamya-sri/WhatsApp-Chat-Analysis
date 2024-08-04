@@ -106,7 +106,7 @@ The WhatsApp Chat Analyzer processes and visualizes WhatsApp chat data to provid
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/whatsapp-chat-analyzer.git
+    git clone https://MRamya-sri/WhatsApp-Chat-Analysis.git
     ```
 2. Navigate to the project directory:
     ```bash
