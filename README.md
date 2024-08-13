@@ -41,21 +41,6 @@ The WhatsApp Chat Analyzer processes and visualizes WhatsApp chat data to provid
 - **Common Words**: List of the most frequently used words and emojis.
 - **Emotion Scores**: Sentiment analysis of messages.
 
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/MRamya-sri/WhatsApp-Chat-Analysis.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd whatsapp-chat-analyzer
-    ```
-3. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
 ## Usage
 
 1. Run the Streamlit app:
