@@ -45,7 +45,7 @@ The WhatsApp Chat Analyzer processes and visualizes WhatsApp chat data to provid
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/whatsapp-chat-analyzer.git
+    git clone https://github.com/MRamya-sri/WhatsApp-Chat-Analysis.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -66,30 +66,6 @@ The WhatsApp Chat Analyzer processes and visualizes WhatsApp chat data to provid
 3. Select the user to analyze or choose "overall" for overall chat analysis.
 4. Click the "Show Analysis" button to generate the insights and visualizations.
 
-## File Structure
-
-Here's a comprehensive README.md file for your WhatsApp Chat Analysis project:
-
-markdown
-Copy code
-# WhatsApp Chat Analyzer
-
-This repository contains a WhatsApp Chat Analyzer built using Streamlit. The analyzer provides various insights and visualizations from WhatsApp chat data, including statistics, timelines, activity maps, emoji analysis, word clouds, and emotion scores.
-
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [File Structure](#file-structure)
-6. [Dependencies](#dependencies)
-7. [Contributing](#contributing)
-8. [License](#license)
-
-## Introduction
-
-The WhatsApp Chat Analyzer processes and visualizes WhatsApp chat data to provide insights into user activity, message frequency, most common words, and more. It also includes sentiment and emotion analysis based on emojis and message content.
 
 ## Features
 
